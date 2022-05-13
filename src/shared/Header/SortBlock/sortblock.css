@@ -1,0 +1,23 @@
+.sortBlock {
+	background-color: var(--white);
+	padding: 11px 20px;
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-ms-border-radius: 7px;
+	-o-border-radius: 7px;
+	margin: 0 0 20px;
+}
+
+@media all and (min-width: 1024px) {
+	.sortBlock {
+		background-color: transparent;
+		padding: 0;
+		margin: 0;
+		border-radius: 0;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		-ms-border-radius: 0;
+		-o-border-radius: 0;
+	}
+}

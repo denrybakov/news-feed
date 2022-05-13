@@ -1,0 +1,104 @@
+.card {
+	position: relative;
+	background-color: var(--white);
+	border-radius: 7px;
+	padding: 20px 20px 10px;
+	display: flex;
+	flex-flow: row wrap;
+}
+.card > *,
+.textContent > * {
+	flex: 1 1 100%;
+}
+.card > * + * {
+	padding: 13px 0 0;
+}
+.card:hover h2 a,
+.card:focus-within h2 a {
+	color: var(--orange);
+}
+
+@media all and (min-width: 1024px) {
+	.card {
+		background-color: transparent;
+		flex-flow: row nowrap;
+		max-height: 107px;
+		padding: 0 40px;
+	}
+	.card > * {
+		flex: 0 0;
+	}
+	.card > * + * {
+		padding: 0;
+	}
+}
+
+@media all and (min-width: 1540px) {
+	.card {
+		padding: 20px 60px;
+		max-height: 147px;
+		cursor: pointer;
+	}
+	.card:hover,
+	.card:focus-within {
+		outline: 1px solid var(--grey-demi-dark);
+	}
+}
+
+/* ============================================= */
+/* =========== default styles */
+/* ============================================= */
+
+@media all and (min-width: 1540px) {
+	.card {
+		padding: 0 60px;
+	}
+
+	.textContent {
+		flex-basis: 672px;
+	}
+
+	.controls {
+		position: relative;
+	}
+
+	.postLink::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	.username {
+		position: relative;
+		z-index: 1;
+	}
+
+	.card:hover h2 a,
+	.card:focus-within h2 a {
+		color: var(--orange);
+	}
+
+	.card:hover,
+	.card:hover:focus-within {
+		outline: 1px solid var(--grayD9);
+	}
+
+	.userLink:hover a {
+		text-decoration: underline;
+	}
+
+	.menuButton:hover {
+		background-color: rgba(51, 51, 51, 0.1);
+	}
+
+	.karmaCounter > button.up:hover > svg > path {
+		fill: var(--green);
+	}
+
+	.karmaCounter > button.down:hover > svg > path {
+		fill: var(--orange);
+	}
+}
