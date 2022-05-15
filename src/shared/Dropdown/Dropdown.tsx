@@ -23,7 +23,7 @@ export function Dropdown({
   useEffect(() => setIsDropdown(false), [isOpen])
   useEffect(() => isDropdown ? onOpen() : onClose(), [isDropdown])
 
-  const handleOpen = () => isDropdown ? setIsDropdown(!isDropdown) : null
+  const handleOpen = () => isOpen ? setIsDropdown(!isDropdown) : null
 
   return (
     <div className={styles.container}>

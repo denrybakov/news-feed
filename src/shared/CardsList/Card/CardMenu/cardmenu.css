@@ -28,7 +28,7 @@
 }
 
 .closeButton {
-	background-color: var(--greyD9);
+	background-color: var(--grayD9);
 	padding: 12px 23px;
 	border-radius: 0 0 3px 3px;
 	width: 100%;
