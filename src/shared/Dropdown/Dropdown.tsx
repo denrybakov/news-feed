@@ -4,7 +4,7 @@ import styles from './dropdown.css';
 interface IDropdownProps {
   children?: ReactNode,
   button: ReactNode,
-  isOpen: boolean,
+  isOpen?: boolean,
   onOpen?: () => void,
   onClose?: () => void
 }
@@ -14,7 +14,7 @@ const VOID_FUNC = () => { }
 export function Dropdown({
   children,
   button,
-  isOpen,
+  isOpen = true,
   onOpen = VOID_FUNC,
   onClose = VOID_FUNC
 }: IDropdownProps) {
