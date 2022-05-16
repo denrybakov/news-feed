@@ -36,7 +36,7 @@ export const AppComponent = (): JSX.Element => {
       <Content>
         <CardsList />
         <button onClick={addItemClick}>Add test</button>
-        <GenericList list={List.map(merge({ onClick: removeItemClick }))} />
+        {/* <GenericList list={List.map(merge({ onClick: removeItemClick }))} /> */}
       </Content>
     </Layout>
   )

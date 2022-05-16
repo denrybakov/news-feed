@@ -11,6 +11,7 @@
 	--grayC4: #c4c4c4;
 	--gray99: #999999;
 	--gray66: #666666;
+	--grayEC: hsl(0, 0%, calc(100% - 7%));
 }
 
 html {

@@ -5,21 +5,22 @@ interface IItem {
   id: string,
   text: string,
   className?: string,
-  As?: 'a' | 'li' | 'button' | 'div'
+
   onClick: (id: string) => void
 }
 
 interface IGenericListProps {
   list: IItem[]
+  As?: 'a' | 'li' | 'button' | 'div'
 }
 
 
-export function GenericList({ list }: IGenericListProps) {
+export function GenericList({ list, As = 'div' }: IGenericListProps) {
   return (
     <ul
       className={styles.genericList}
     >
-      {list.map(({ As = 'div', id, text, className, onClick }) => (
+      {list.map(({ id, text, className, onClick }) => (
         <As
           key={id}
           className={className}
