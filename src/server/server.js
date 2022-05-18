@@ -15,6 +15,12 @@ app.get('/', (req, res) => {
   )
 })
 
+app.get('/auth', (req, res) => {
+  res.send(
+    indexTemplate(ReactDOM.renderToString(App()))
+  )
+})
+
 app.listen(PORT_SERVER, () => {
   console.log(`Сервер работает на ${PORT_SERVER}`)
 })
