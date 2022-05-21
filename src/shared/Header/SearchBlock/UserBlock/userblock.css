@@ -29,6 +29,11 @@
 	border-radius: 100%;
 }
 
+.avatarBox img {
+	max-width: 90%;
+	object-fit: cover;
+}
+
 .username {
 	display: none;
 }
