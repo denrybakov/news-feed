@@ -16,9 +16,18 @@ app.get('/', (req, res) => {
 })
 
 app.get('/auth', (req, res) => {
-  res.send(
-    indexTemplate(ReactDOM.renderToString(App()))
+  axios.post(
+    `https://www.reddit.com/api/v1/access_token`,
+    `grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:3000/auth`,
+    {
+      auth: { username: process.env.CLIENT_ID, password: '2EZPRg_vSfV8fWUckvTIg_Bn_--V3g' },
+      headers: { 'Content-type': 'application/x-www-form-urlencoded' }
+    }
   )
+    .then(({ data }) => {
+      res.send(indexTemplate(ReactDOM.renderToString(App()), data['access_token']))
+    })
+    .catch(console.log)
 })
 
 app.listen(PORT_SERVER, () => {
