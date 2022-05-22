@@ -1,4 +1,4 @@
-export const indexTemplate = template => `
+export const indexTemplate = (template, token) => `
 <!doctype html>
 <html lang="ru">
 <head>
@@ -7,6 +7,9 @@ export const indexTemplate = template => `
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="/static/client.bundle.js" type="application/javascript"></script>
+    <script>
+      window.__token__ = '${token}'
+    </script>
     <title>Document</title>
 </head>
 <body>
