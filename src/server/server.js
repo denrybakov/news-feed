@@ -2,6 +2,7 @@ import express from 'express'
 import ReactDOM from 'react-dom/server'
 import { App } from '../App'
 import { indexTemplate } from './template'
+import axios from 'axios'
 
 const PORT_SERVER = 3000
 

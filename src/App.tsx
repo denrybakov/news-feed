@@ -9,6 +9,7 @@ import { tokenContext } from './shared/context/tokenContext'
 
 import './App.global.css'
 import { useToken } from './hooks/useToken'
+import { PostsContextProvider } from './shared/context/postsContext'
 
 
 export const AppComponent = (): JSX.Element => {
@@ -16,12 +17,14 @@ export const AppComponent = (): JSX.Element => {
   const { Provider } = tokenContext
   return (
     <Provider value={token}>
-      <Layout>
-        <Header />
-        <Content>
-          <CardsList />
-        </Content>
-      </Layout>
+      <PostsContextProvider>
+        <Layout>
+          <Header />
+          <Content>
+            <CardsList />
+          </Content>
+        </Layout>
+      </PostsContextProvider>
     </Provider>
   )
 }
