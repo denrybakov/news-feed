@@ -16,17 +16,10 @@ export function useUserData(): IUserData[] {
       axios.get('https://oauth.reddit.com/api/v1/me', {
         headers: { Authorization: `bearer ${token}` }
       })
-        .then(res => {
-          const userData = res.data
-          console.log('userData = ', userData)
-          setData({ name: userData.name, iconImg: userData.snoovatar_img })
-
-        })
+        .then(res => setData({ name: res.data.name, iconImg: res.data.snoovatar_img }))
         .catch(console.log)
     }
   }, [token])
-
-  console.log('data = ', data)
-
+  
   return [data]
 }

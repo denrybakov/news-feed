@@ -17,12 +17,10 @@ export function usePostData() {
   const token = useContext(tokenContext)
 
   useEffect(() => {
-    axios('https://www.reddit.com/best.json')
-      .then(res => {
-        let posts = res.data.data.children.map((item: any) => ({...item.data}))
-        setPostData(posts)
-        console.log('post data = ', posts)
+      axios(`https://oauth.reddit.com/best.json`, {
+        headers: {Authorization: `bearer ${token}`}
       })
+      .then(res => setPostData(res.data.data.children.map((item: any) => ({...item.data}))))
       .catch(console.log)
   }, [token])
 
