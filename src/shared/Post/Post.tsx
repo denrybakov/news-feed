@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { commentContext } from '../context/commentContext';
 import { tokenContext } from '../context/tokenContext';
@@ -45,6 +45,11 @@ export function Post({ id, onClose }: IPostProps) {
     return () => document.removeEventListener('click', onCloseModal)
   }, [])
 
+  const answerHandler = (name: string): void => {
+    refAria.current?.focus()
+    onChange(name + ', ')
+  }
+
   return createPortal((
     <div className={styles.modal} ref={ref}>
       <h2>Следует отметить ...</h2>
@@ -55,6 +60,22 @@ export function Post({ id, onClose }: IPostProps) {
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat, maxime assumenda sed corporis dignissimos ea quibusdam et suscipit, ut nisi voluptates sapiente tempore delectus facilis aliquam a, cumque iusto ratione?</p>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti nisi voluptate nesciunt eveniet quam, temporibus, minima nulla, odio qui dolore est rerum molestiae magni quibusdam maxime optio omnis aliquam. Fugit.</p>
       </div>
+      {
+        !loading
+          ? <React.Fragment>
+            <CommentForm refAria={refAria} />
+            {
+              comments.map((item: any) =>
+                <CommentsPost
+                  key={item.id}
+                  id={item.id}
+                  authorPost={item.author}
+                  created={item.created}
+                  answerHandler={answerHandler}
+                />)
+            }</React.Fragment>
+          : <div style={{ textAlign: 'center', marginTop: '50px' }}>Необходимо авторизоваться</div>
+      }
     </div>),
     node
   )

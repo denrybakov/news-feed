@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './cardcontrol.css';
 
 interface ICardControlProps {
-  score: number
+  score?: number
 }
 
 
