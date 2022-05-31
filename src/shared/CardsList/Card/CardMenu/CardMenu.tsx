@@ -3,6 +3,7 @@ import { Dropdown } from '../../../Dropdown';
 import { MenuIcon } from '../../../icons';
 import { CardMenuItemList } from './CardMenuItemList';
 import styles from './cardmenu.css';
+import { EColors, Text } from '../../../Text';
 
 export function CardMenu() {
 
@@ -14,12 +15,14 @@ export function CardMenu() {
 
 
   return (
-    <div className={styles.menu}>
+    <div className={styles.menu}  >
       <Dropdown button={button} isOpen>
         <div className={styles.dropdown}>
-          <CardMenuItemList postId='werr' />
+          <CardMenuItemList postId='sdffs' />
           <button className={styles.closeButton}>
-            Закрыть
+            <Text mobileSize={12} size={14} color={EColors.gray66}>
+              Закрыть
+            </Text>
           </button>
         </div>
       </Dropdown>

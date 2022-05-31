@@ -1,4 +1,5 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './dropdown.css';
 
 interface IDropdownProps {
@@ -20,26 +21,50 @@ export function Dropdown({
 }: IDropdownProps) {
 
   const [isDropdown, setIsDropdown] = useState(false)
+  const [offset, setOffset] = useState({ top: '0px', left: '0px' })
+
+  const menuRef = useRef<HTMLDivElement>(null)
+
+
   useEffect(() => setIsDropdown(false), [isOpen])
   useEffect(() => isDropdown ? onOpen() : onClose(), [isDropdown])
 
-  const handleOpen = () => isOpen ? setIsDropdown(!isDropdown) : null
+  const handleOpen = (e: any) => {
+    const { top } = document.body.getBoundingClientRect()
+    const btn = e.target.getBoundingClientRect()
+    console.log(top)
+    console.log(btn)
+    btn
+      ? setOffset(prev =>
+        ({ ...prev, top: `${Math.ceil(btn.top - top)}px`, left: `${75}vw` }))
+      : null
+    isOpen ? setIsDropdown(!isDropdown) : null
+  }
+
+  const node = document.querySelector('#dropdown_root')
+  if (!node) return null
 
   return (
     <div className={styles.container}>
       <div onClick={handleOpen}>
         {button}
       </div>
-      {isDropdown && (
-        <div className={styles.listContainer}>
-          <div
-            className={styles.list}
-            onClick={() => setIsDropdown(false)}
-          >
-            {children}
-          </div>
-        </div>
-      )}
+      <div>
+        {isDropdown && (
+          createPortal((
+            <div className={styles.listContainer} ref={menuRef}>
+              <div
+                className={styles.list}
+                style={offset}
+                onClick={() => setIsDropdown(false)}
+              >
+                {children}
+              </div>
+            </div>
+          ), node
+          )
+        )}
+      </div>
     </div>
   )
 }

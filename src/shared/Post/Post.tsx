@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { CommentForm } from '../CommentForm';
+import { CommentsPost } from '../CommentsPost';
 import { commentContext } from '../context/commentContext';
 import { tokenContext } from '../context/tokenContext';
 
@@ -20,9 +22,8 @@ export function Post({ id, onClose }: IPostProps) {
   const { onChange } = useContext(commentContext)
 
   const ref = useRef<HTMLDivElement>(null)
-  const refAria = useRef<HTMLAreaElement>(null)
-  const node = document.querySelector('#modal_root')
-  if (!node) return null
+  const refAria = useRef<HTMLTextAreaElement>(null)
+
 
   useEffect(() => {
     axios(`https://oauth.reddit.com/comments/${id}`, {
@@ -50,6 +51,9 @@ export function Post({ id, onClose }: IPostProps) {
     onChange(name + ', ')
   }
 
+  const node = document.querySelector('#modal_root')
+  if (!node) return null
+
   return createPortal((
     <div className={styles.modal} ref={ref}>
       <h2>Следует отметить ...</h2>
@@ -61,7 +65,7 @@ export function Post({ id, onClose }: IPostProps) {
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti nisi voluptate nesciunt eveniet quam, temporibus, minima nulla, odio qui dolore est rerum molestiae magni quibusdam maxime optio omnis aliquam. Fugit.</p>
       </div>
       {
-        !loading
+        !loading && comments.length > 1
           ? <React.Fragment>
             <CommentForm refAria={refAria} />
             {
@@ -74,7 +78,7 @@ export function Post({ id, onClose }: IPostProps) {
                   answerHandler={answerHandler}
                 />)
             }</React.Fragment>
-          : <div style={{ textAlign: 'center', marginTop: '50px' }}>Необходимо авторизоваться</div>
+          : <div style={{ textAlign: 'center', marginTop: '50px' }}>Здесь пока ничего нет</div>
       }
     </div>),
     node
