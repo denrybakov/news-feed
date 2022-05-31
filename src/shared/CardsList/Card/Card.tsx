@@ -25,7 +25,7 @@ export function Card({
 
   return (
     <li className={styles.card} data-id={id}>
-      <CardText author={author} title={title} created={created} />
+      <CardText id={id} author={author} title={title} created={created} />
       <CardPreview thumbnail={thumbnail} />
       <CardMenu />
       <CardControl score={score} />
