@@ -15,6 +15,7 @@ export const indexTemplate = (template, token) => `
 <body>
 
 <div id="root">${template}</div>
+<div id="modal_root"></div>
 </body>
 </html>
 `
