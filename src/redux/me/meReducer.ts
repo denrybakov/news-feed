@@ -4,14 +4,14 @@ import { IUserData, MeRequestSuccessAction, MeRequestAction, MeRequestErrorActio
 import * as TYPES from '../types'
 
 export type MeState = {
-  loading: boolean,
-  error: string, 
-  data: IUserData
+  loading?: boolean,
+  error?: string, 
+  data?: IUserData | undefined
 }
 
 export type MeAction = MeRequestAction & MeRequestSuccessAction & MeRequestErrorAction
 
-export const meReducer: Reducer<MeState, MeAction> = (state = initState.me, {type, payload}: MeAction) => {
+export const meReducer: Reducer<MeState, MeAction> = (state = initState.me, {type, payload}) => {
   switch(type) {
     case TYPES.ME_REQUEST:
       return {...state, loading: true}

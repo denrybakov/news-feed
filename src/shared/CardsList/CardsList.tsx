@@ -18,6 +18,7 @@ export function CardsList() {
               key={item.id}
               id={item.id}
               author={item.author}
+              subreddit={item.subreddit}
               title={item.title}
               created={item.created}
               thumbnail={item.thumbnail}

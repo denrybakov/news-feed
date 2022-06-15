@@ -1,6 +1,11 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useOutsideModal } from '../../hooks/useOutsideModal';
+import { replyComment } from '../../redux/comment/commentAction';
+import { TRootState } from '../../redux/initState';
 import { CommentForm } from '../CommentForm';
 import { CommentsPost } from '../CommentsPost';
 import { commentContext } from '../context/commentContext';
@@ -10,45 +15,35 @@ import styles from './post.css';
 
 interface IPostProps {
   id: string
+  subreddit: string
   onClose: () => void
 }
 
-export function Post({ id, onClose }: IPostProps) {
+export function Post({ id, subreddit, onClose }: IPostProps) {
   const [comments, setComments] = useState([])
-  const [authorPost, setAuthorPost] = useState({})
+  // const [authorPost, setAuthorPost] = useState({})
   const [loading, setLoading] = useState(true)
-
-  const token = useContext(tokenContext)
-  const { onChange } = useContext(commentContext)
-
-  const ref = useRef<HTMLDivElement>(null)
+  const { ref } = useOutsideModal(onClose)
+  const dispatch = useDispatch()
   const refAria = useRef<HTMLTextAreaElement>(null)
 
-
   useEffect(() => {
-    axios(`https://oauth.reddit.com/comments/${id}`, {
-      headers: { Authorization: `bearer ${token}` }
-    })
+    axios(`https://api.reddit.com/r/${subreddit}/comments/${id}`)
       .then(res => res.data.map((item: any) => item.data.children))
       .then((res) => {
-        setAuthorPost(prev => ({ ...prev, ...res[0].map((item: any) => item.data)[0] }))
+        // setAuthorPost(prev => ({ ...prev, ...res[0].map((item: any) => item.data)[0] }))
         setComments(res[1].slice(0, 5).map((item: any) => item.data))
       })
       .catch(console.log)
     setLoading(false)
-    return () => onChange('')
-  }, [])
-
-  useEffect(() => {
-    const onCloseModal = (e: MouseEvent) =>
-      e.target instanceof Node && !ref.current?.contains(e.target) ? onClose?.() : null
-    document.addEventListener('click', onCloseModal)
-    return () => document.removeEventListener('click', onCloseModal)
+    return () => {
+      dispatch(replyComment(''))
+    }
   }, [])
 
   const answerHandler = (name: string): void => {
     refAria.current?.focus()
-    onChange(name + ', ')
+    dispatch(replyComment(name + ', '))
   }
 
   const node = document.querySelector('#modal_root')

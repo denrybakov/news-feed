@@ -1,21 +1,24 @@
-import React, { ChangeEvent, FormEvent, useContext } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateComment } from '../../redux/comment/commentAction';
+import { TRootState } from '../../redux/initState';
 import { preventDefault } from '../../utils/react/preventDefault';
-import { commentContext } from '../context/commentContext';
-import styles from './commentform.css';
 
+import styles from './commentform.css';
 interface ICommentFormProps {
   refAria: any
 }
 
 export function CommentForm({ refAria }: ICommentFormProps) {
-  const { value, onChange } = useContext(commentContext)
+  const value = useSelector<TRootState, string>(state => state.commentText)
+  const dispatch = useDispatch()
 
   const onHandleSubmit = (e: FormEvent): void => {
-    console.log(value)
+    // console.log(value)
   }
 
   const changeTextAria = (e: ChangeEvent<HTMLTextAreaElement>): void => {
-    onChange(e.target.value)
+    dispatch(updateComment(e.target.value))
   }
 
   return (

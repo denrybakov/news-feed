@@ -4,10 +4,10 @@ import { UserBlock } from './UserBlock';
 import { useUserData } from '../../../hooks/useUserData';
 
 export function SearchBlock() {
-  const [data] = useUserData()
+  const { data, loading } = useUserData()
   return (
     <div className={styles.searchBlock}>
-      <UserBlock avatarSrc={data.iconImg} username={data.name} />
+      <UserBlock avatarSrc={data.iconImg} username={data.name} loading={loading} />
     </div>
   )
 }

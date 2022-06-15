@@ -1,11 +1,8 @@
-import React, {useEffect, useState} from "react"
+import {useEffect} from "react"
+import { useDispatch } from "react-redux"
+import { saveToken } from "../redux/token/tokenAction"
 
 export function useToken() {
-  const [tokenStr, setToken] = useState('')
-  useEffect(() => {
-    window.__token__ ? setToken(window.__token__) : null 
-  }, [])
-
-  const token: string = tokenStr
-  return  [token]
+  const dispatch = useDispatch<any>()
+  useEffect(() => dispatch(saveToken()), [])
 }
