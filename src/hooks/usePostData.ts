@@ -1,7 +1,6 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 
 import axios from "axios";
-import { tokenContext } from "../shared/context/tokenContext";
 import { useSelector } from "react-redux";
 import { TRootState } from "../redux/initState";
 

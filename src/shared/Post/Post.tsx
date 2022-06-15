@@ -1,15 +1,11 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useOutsideModal } from '../../hooks/useOutsideModal';
 import { replyComment } from '../../redux/comment/commentAction';
-import { TRootState } from '../../redux/initState';
 import { CommentForm } from '../CommentForm';
 import { CommentsPost } from '../CommentsPost';
-import { commentContext } from '../context/commentContext';
-import { tokenContext } from '../context/tokenContext';
 
 import styles from './post.css';
 

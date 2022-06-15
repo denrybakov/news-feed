@@ -1,4 +1,3 @@
-import React from 'react';
 import { hoursToWord } from '../../utils/react/hoursToWord';
 import { CardControl } from '../CardsList/Card/CardControl';
 import { EIcons, Icon } from '../Icon';

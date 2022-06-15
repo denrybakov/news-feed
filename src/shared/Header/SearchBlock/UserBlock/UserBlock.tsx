@@ -1,9 +1,9 @@
-import React from 'react';
+import styles from './userblock.css';
+
 import { Break } from '../../../Break';
 import { AnonIcon } from '../../../icons/AnonIcon';
 import { Text, EColors } from '../../../Text';
 
-import styles from './userblock.css';
 
 interface IUserBlockProps {
   avatarSrc?: string

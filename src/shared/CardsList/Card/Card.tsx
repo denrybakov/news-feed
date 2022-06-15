@@ -1,4 +1,4 @@
-import React from 'react';
+
 import styles from './card.css';
 import { CardControl } from './CardControl';
 import { CardMenu } from './CardMenu';
