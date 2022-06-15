@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import styles from './cardslist.css';
+
+import { useContext } from 'react';
 import { postsContext } from '../context/postsContext';
 import { Card } from './Card/Card';
-import styles from './cardslist.css';
 import { IPosts } from '../../hooks/usePostData';
 import { Break } from '../Break';
 
@@ -18,6 +19,7 @@ export function CardsList() {
               key={item.id}
               id={item.id}
               author={item.author}
+              subreddit={item.subreddit}
               title={item.title}
               created={item.created}
               thumbnail={item.thumbnail}

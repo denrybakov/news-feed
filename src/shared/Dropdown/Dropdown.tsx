@@ -1,6 +1,6 @@
-import React, { ReactNode, useEffect, useState, useRef } from 'react';
-import { createPortal } from 'react-dom';
 import styles from './dropdown.css';
+import { ReactNode, useEffect, useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
 interface IDropdownProps {
   children?: ReactNode,

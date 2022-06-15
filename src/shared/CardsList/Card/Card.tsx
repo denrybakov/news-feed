@@ -1,4 +1,4 @@
-import React from 'react';
+
 import styles from './card.css';
 import { CardControl } from './CardControl';
 import { CardMenu } from './CardMenu';
@@ -12,6 +12,7 @@ export interface ICardProps {
   created: number
   thumbnail: string
   score: number
+  subreddit: string
 }
 
 export function Card({
@@ -20,12 +21,13 @@ export function Card({
   title,
   created,
   thumbnail,
-  score
+  score,
+  subreddit
 }: ICardProps) {
 
   return (
     <li className={styles.card} data-id={id}>
-      <CardText id={id} author={author} title={title} created={created} />
+      <CardText id={id} author={author} title={title} created={created} subreddit={subreddit} />
       <CardPreview thumbnail={thumbnail} />
       <CardMenu />
       <CardControl score={score} />

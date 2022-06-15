@@ -1,8 +1,7 @@
-import React from 'react';
+import styles from './cardmenu.css';
 import { Dropdown } from '../../../Dropdown';
 import { MenuIcon } from '../../../icons';
 import { CardMenuItemList } from './CardMenuItemList';
-import styles from './cardmenu.css';
 import { EColors, Text } from '../../../Text';
 
 export function CardMenu() {

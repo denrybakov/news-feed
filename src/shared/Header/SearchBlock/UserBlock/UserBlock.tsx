@@ -1,20 +1,22 @@
-import React from 'react';
+import styles from './userblock.css';
+
 import { Break } from '../../../Break';
 import { AnonIcon } from '../../../icons/AnonIcon';
 import { Text, EColors } from '../../../Text';
 
-import styles from './userblock.css';
 
 interface IUserBlockProps {
   avatarSrc?: string
   username?: string
+  loading?: boolean
 }
 
 const API = `https://www.reddit.com/api/v1/authorize?client_id=${process.env.CLIENT_ID}&response_type=code&state=random_string&redirect_uri=http://localhost:3000/auth&duration=permanent&scope=read submit identity`
 
 export function UserBlock({
   avatarSrc,
-  username
+  username,
+  loading
 }: IUserBlockProps) {
   return (
     <a
@@ -31,7 +33,13 @@ export function UserBlock({
 
       <div className={styles.username}>
         <Break size={12} />
-        <Text size={20} color={EColors.black}>{username || 'Аноним'}</Text>
+        {
+          loading ? (
+            <Text size={20} color={EColors.gray99}>{username || 'Загрузка...'}</Text>
+          ) : (
+            <Text size={20} color={EColors.black}>{username || 'Аноним'}</Text>
+          )
+        }
       </div>
     </a>
   );

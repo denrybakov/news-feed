@@ -1,7 +1,8 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 
 import axios from "axios";
-import { tokenContext } from "../shared/context/tokenContext";
+import { useSelector } from "react-redux";
+import { TRootState } from "../redux/initState";
 
 export interface IPosts {
   id: string 
@@ -9,12 +10,13 @@ export interface IPosts {
   author: string 
   created: number  
   thumbnail: string 
-  score: number 
+  score: number
+  subreddit: string 
 }
 
 export function usePostData() {
   const [postData, setPostData] = useState<IPosts[]>([])
-  const token = useContext(tokenContext)
+  const token = useSelector<TRootState>(state => state.token)
 
   useEffect(() => {
       axios(`https://oauth.reddit.com/best.json`, {

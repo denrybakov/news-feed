@@ -8,13 +8,15 @@ interface ICardTextProps {
   author: string
   title: string
   created: number
+  subreddit: string
 }
 
 export function CardText({
   id,
   author,
   title,
-  created
+  created,
+  subreddit
 }: ICardTextProps): JSX.Element {
   const [isModal, setIsModal] = useState(false)
   const defaultAvatar = 'https://ustanovkaos.ru/wp-content/uploads/2022/02/06-psevdo-pustaya-ava.jpg'
@@ -47,7 +49,7 @@ export function CardText({
         <a href="#post-url" className={styles.postLink}>{title}</a>
         {
           isModal && (
-            <Post id={id} onClose={() => setIsModal(false)} />
+            <Post id={id} onClose={() => setIsModal(false)} subreddit={subreddit} />
           )
         }
       </h2>
