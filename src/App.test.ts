@@ -1,3 +1,3 @@
 test('Тестовый тест', () => {
-  expect(true).toBe(true)
+  expect(false).toBe(false)
 })
